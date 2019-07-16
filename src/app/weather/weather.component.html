@@ -1,0 +1,78 @@
+
+
+<div class="container">
+    <div class="row">
+<div class="card mb-3 m-auto">
+    <h5 class="card-header bg-primary text-white">Clima Ciudades</h5>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <h3 class="text-center my-4">Buscar Clima: </h3>
+                <form
+                  [formGroup]="form"
+                  (ngSubmit)="sendToAPI(form.value)"
+                >
+                  <div class="form-group">
+                    <select class="form-control"  formControlName="location">
+                        <option *ngFor="let item of ciudades" [value]="item">{{item}}</option>
+                      </select>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-md">
+                      Buscar
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-6">
+                <h3 class="text-center my-4">Detalles del Clima:</h3>
+                <p class="text-left">
+                 Nombre Ciudad:
+                  {{ this.weatherData?.name }}
+                </p>
+                <p class="text-left">
+                Pais: {{this.weatherData?.sys.country}}
+                </p>
+                <p class="text-left">
+                Fuerza de Viento: {{ this.weatherData?.wind.speed }}
+                </p>
+               <p class="text-left">
+                 Temperatura en Celsius:
+                  {{ this.weatherData?.main.temp }}
+                </p>
+               <p class="text-left">
+                  Clima :
+                  {{ this.weatherData?.weather[0].description }}
+                </p>
+               <p class="text-left">
+                 Humedad:
+                  {{ this.weatherData?.main.humidity }}
+                </p>
+              </div>
+            </div>
+            <div class="row" *ngIf="valor">
+                <div class="col-md-12 col-md-offset-4">
+                    <div class="weather">
+                        <div class="current">
+                            <div class="info">
+                                <div>&nbsp;</div>
+                                <div class="city"><small><small>CITY:</small></small> {{this.form.controls.location.value}}</div>
+                                <div class="temp">{{this.weatherData?.main.temp}}&deg; <small>F</small></div>
+                                <div class="wind"><small><small>WIND:</small></small> {{this.weatherData?.wind.speed}} km/h</div>
+                                <div>&nbsp;</div>
+                            </div>
+                            <div class="icon">
+                                <span class="wi-day-sunny"></span>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+  </div>
+    </div>
+</div>
+
